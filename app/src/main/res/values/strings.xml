@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">PDP AI</string>
+    <string name="enter_text">Type a Message</string>
+    <string name="pdptext">PDP AI     </string>
+    <string name="say_something">Say something..</string>
+    <string name="ths">Sed ligula erat, dignissim sit amet dictum id?</string>
+    <string name="pdpai">PDP AI</string>
+    <string name="indigo">Indigo</string>
+    <string name="online">online</string>
+    <string name="type">typing...</string>
+    <string name="pdpl">PDP Location</string>
+    <string name="off">Official Website</string>
+    <string name="clear">Clear Chat</string>
+    <string name="info">PDP Info</string>
+    <string name="open">Open Youtube channel</string>
+</resources>

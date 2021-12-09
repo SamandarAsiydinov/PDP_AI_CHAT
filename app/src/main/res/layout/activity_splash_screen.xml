@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/splash"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".ui.SplashScreen">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        android:fontFamily="@font/baloo"
+        android:text="@string/pdpai"
+        android:textColor="@color/white"
+        android:textSize="40sp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="180dp"
+        android:layout_height="130dp"
+        android:src="@drawable/pdpsp"/>
+
+
+</LinearLayout>
+
+
+    <!--<TextView-->
+    <!--android:id="@+id/textView"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginTop="212dp"-->
+    <!--android:fontFamily="@font/baloo"-->
+    <!--android:text="@string/pdp_acadamy"-->
+    <!--android:textColor="@color/white"-->
+    <!--android:padding="30dp"-->
+    <!--android:textSize="40sp"-->
+    <!--app:layout_constraintEnd_toEndOf="parent"-->
+    <!--app:layout_constraintStart_toStartOf="parent"-->
+    <!--app:layout_constraintTop_toTopOf="parent" />-->
+
+    <!--<LinearLayout-->
+    <!--android:id="@+id/linearone"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:gravity="center"-->
+    <!--android:layout_marginBottom="20dp"-->
+    <!--android:orientation="horizontal"-->
+    <!--app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--app:layout_constraintEnd_toEndOf="parent"-->
+    <!--app:layout_constraintStart_toStartOf="parent"-->
+    <!--app:layout_constraintVertical_bias="0.17">-->
+
+    <!--<ImageView-->
+    <!--    android:contentDescription="@string/indigo"-->
+    <!--    android:layout_width="70dp"-->
+    <!--    android:layout_height="70dp"-->
+    <!--    android:src="@drawable/indigo" />-->
+
+    <!--<ImageView-->
+    <!--    android:contentDescription="@string/indigo"-->
+    <!--    android:layout_width="70dp"-->
+    <!--    android:layout_height="90dp"-->
+    <!--    android:scaleType="center"-->
+    <!--    android:src="@drawable/one" />-->
+
+    <!--<ImageView-->
+    <!--    android:contentDescription="@string/indigo"-->
+    <!--    android:layout_width="70dp"-->
+    <!--    android:layout_height="90dp"-->
+    <!--    android:scaleType="center"-->
+    <!--    android:src="@drawable/one" />-->
+
+    <!--</LinearLayout>-->
+

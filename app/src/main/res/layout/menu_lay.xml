@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="10dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="12dp"
+    android:background="@drawable/edit_round"
+    android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:fontFamily="@font/abeezee"
+                android:text="@string/pdpl"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textLay" />
+
+            <TextView
+                android:id="@+id/official"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:fontFamily="@font/abeezee"
+                android:text="@string/off"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textLay" />
+
+            <TextView
+                android:id="@+id/clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:fontFamily="@font/abeezee"
+                android:text="@string/clear"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textLay" />
+
+            <TextView
+                android:id="@+id/info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:fontFamily="@font/abeezee"
+                android:text="@string/info"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textLay" />
+
+            <TextView
+                android:id="@+id/openYou"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:fontFamily="@font/abeezee"
+                android:text="@string/open"
+                android:textColor="@color/black"
+                android:textSize="@dimen/textLay" />
+
+        </LinearLayout>
+
+</androidx.cardview.widget.CardView>
