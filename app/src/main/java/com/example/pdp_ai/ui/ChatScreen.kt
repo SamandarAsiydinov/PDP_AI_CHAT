@@ -64,7 +64,7 @@ class ChatScreen : AppCompatActivity(), TextToSpeech.OnInitListener {
     }
 
     private fun connectEnglishAPI() {
-        var jsonArrayENGLISH = JSONArray()
+        val jsonArrayENGLISH = JSONArray()
         val API_ENGLISH = "https://61b337cdaf5ff70017ca1d4b.mockapi.io/pdp/ai/db/EnglishDB"
         val queueENGLISH = Volley.newRequestQueue(this)
         val jsonObjectRequest = JsonArrayRequest (
@@ -98,9 +98,6 @@ class ChatScreen : AppCompatActivity(), TextToSpeech.OnInitListener {
     private fun setUzbek(jsonArray: JSONArray) {
         uzbekDB = jsonArray
     }
-
-
-
 
     private fun clickEvents() {
         btnSend.setOnClickListener {
@@ -172,11 +169,8 @@ class ChatScreen : AppCompatActivity(), TextToSpeech.OnInitListener {
                         site.data = Uri.parse("https://www.pdp.uz/")
                         startActivity(site)
                     }
-                    Constants.OPEN_SEARCH -> {
-                        val site = Intent(Intent.ACTION_VIEW)
-                        val searchTerm: String = message.substringAfterLast("search")
-                        site.data = Uri.parse("https://www.pdp.uz/search?&q=$searchTerm")
-                        startActivity(site)
+                    Constants.CALL -> {
+                        startActivity(Intent(Intent.ACTION_DIAL, Uri.parse("tel:+998787774747")))
                     }
                     Constants.EXIT -> {
                         delay(1700)
