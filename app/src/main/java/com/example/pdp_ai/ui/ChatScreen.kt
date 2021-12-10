@@ -14,13 +14,13 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.pdp_ai.R
+import com.example.pdp_ai.ui.data.MyLifeCycle
 import com.example.pdp_ai.ui.data.Message
 import com.example.pdp_ai.ui.utils.BotResponse
 import com.example.pdp_ai.ui.utils.Constants
 import com.example.pdp_ai.ui.utils.Time
 import kotlinx.android.synthetic.main.activity_chat.*
 import kotlinx.coroutines.*
-import org.w3c.dom.Text
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -28,6 +28,7 @@ class ChatScreen : AppCompatActivity(), TextToSpeech.OnInitListener {
     private val REQ_CODE = 100
     lateinit var textToSpeech: TextToSpeech
     private val uri = "https://maps.app.goo.gl/G5y2oFnRuAxswXRF9"
+    private lateinit var myLifeCycle: MyLifeCycle
 
     var messagesList = mutableListOf<Message>()
 
@@ -40,6 +41,10 @@ class ChatScreen : AppCompatActivity(), TextToSpeech.OnInitListener {
         textToSpeech = TextToSpeech(this, this)
         recyclerView()
         clickEvents()
+
+        myLifeCycle = MyLifeCycle(this, lifecycle)
+
+        lifecycle.addObserver(myLifeCycle)
 
         val random = (0..3).random()
         customBotMessage(
