@@ -13,6 +13,9 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.android.volley.Request
+import com.android.volley.toolbox.JsonArrayRequest
+import com.android.volley.toolbox.Volley
 import com.example.pdp_ai.R
 import com.example.pdp_ai.ui.data.MyLifeCycle
 import com.example.pdp_ai.ui.data.Message
@@ -21,6 +24,7 @@ import com.example.pdp_ai.ui.utils.Constants
 import com.example.pdp_ai.ui.utils.Time
 import kotlinx.android.synthetic.main.activity_chat.*
 import kotlinx.coroutines.*
+import org.json.JSONArray
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -35,6 +39,9 @@ class ChatScreen : AppCompatActivity(), TextToSpeech.OnInitListener {
     private lateinit var adapter: MessagingAdapter
     private val botList = listOf("Maya", "Farida", "Mohichehra", "Nargiza")
 
+    private lateinit var uzbekDB: JSONArray
+    private lateinit var englishDB: JSONArray
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat)
@@ -44,6 +51,9 @@ class ChatScreen : AppCompatActivity(), TextToSpeech.OnInitListener {
 
         myLifeCycle = MyLifeCycle(this, lifecycle)
 
+        connectUzbekAPI()
+        connectEnglishAPI()
+
         lifecycle.addObserver(myLifeCycle)
 
         val random = (0..3).random()
@@ -52,6 +62,45 @@ class ChatScreen : AppCompatActivity(), TextToSpeech.OnInitListener {
                     "Ismim ${botList[random]} , Sizning shaxsiy konsultantingizman. Sizga qanday yordam bera olaman ? ☺️"
         )
     }
+
+    private fun connectEnglishAPI() {
+        var jsonArrayENGLISH = JSONArray()
+        val API_ENGLISH = "https://61b337cdaf5ff70017ca1d4b.mockapi.io/pdp/ai/db/EnglishDB"
+        val queueENGLISH = Volley.newRequestQueue(this)
+        val jsonObjectRequest = JsonArrayRequest (
+            Request.Method.GET, API_ENGLISH, jsonArrayENGLISH, {
+                setEnglish(it)
+            }, {
+                Toast.makeText(this, "Something went Wrong", Toast.LENGTH_LONG).show()
+            }
+        )
+        queueENGLISH.add(jsonObjectRequest)
+    }
+    private fun setEnglish(jsonArray: JSONArray) {
+        uzbekDB = jsonArray
+    }
+
+
+
+    private fun connectUzbekAPI() {
+        val jsonArrayUZBEK = JSONArray()
+        val API_UZBEK = "https://61b337cdaf5ff70017ca1d4b.mockapi.io/pdp/ai/db/UzbekDB"
+        val queueUZBEK = Volley.newRequestQueue(this)
+        val jsonArrayRequest = JsonArrayRequest (
+            Request.Method.GET, API_UZBEK, jsonArrayUZBEK, {
+                setUzbek(it)
+            }, {
+                Toast.makeText(this, "Something went Wrong", Toast.LENGTH_LONG).show()
+            }
+        )
+        queueUZBEK.add(jsonArrayRequest)
+    }
+    private fun setUzbek(jsonArray: JSONArray) {
+        uzbekDB = jsonArray
+    }
+
+
+
 
     private fun clickEvents() {
         btnSend.setOnClickListener {
@@ -107,7 +156,8 @@ class ChatScreen : AppCompatActivity(), TextToSpeech.OnInitListener {
             delay(1800)
 
             withContext(Dispatchers.Main) {
-                val response = BotResponse.basicResponses(message)
+
+                val response = BotResponse.basicResponses(message, uzbekDB, "Uzbek")
 
                 messagesList.add(Message(response, Constants.RECEIVE_ID, timeStamp))
 
