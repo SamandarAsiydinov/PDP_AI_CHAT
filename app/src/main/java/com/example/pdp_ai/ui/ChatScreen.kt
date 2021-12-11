@@ -12,6 +12,7 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.widget.addTextChangedListener
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.volley.Request
 import com.android.volley.toolbox.JsonArrayRequest
@@ -32,6 +33,7 @@ class ChatScreen : AppCompatActivity(), TextToSpeech.OnInitListener {
     private val REQ_CODE = 100
     lateinit var textToSpeech: TextToSpeech
     private val uri = "https://maps.app.goo.gl/G5y2oFnRuAxswXRF9"
+    private val API_UZ = "https://61b337cdaf5ff70017ca1d4b.mockapi.io/pdp/ai/db/UzbekDB"
     private lateinit var myLifeCycle: MyLifeCycle
 
     var messagesList = mutableListOf<Message>()
@@ -80,11 +82,9 @@ class ChatScreen : AppCompatActivity(), TextToSpeech.OnInitListener {
         uzbekDB = jsonArray
     }
 
-
-
     private fun connectUzbekAPI() {
         val jsonArrayUZBEK = JSONArray()
-        val API_UZBEK = "https://61b337cdaf5ff70017ca1d4b.mockapi.io/pdp/ai/db/UzbekDB"
+        val API_UZBEK = API_UZ
         val queueUZBEK = Volley.newRequestQueue(this)
         val jsonArrayRequest = JsonArrayRequest (
             Request.Method.GET, API_UZBEK, jsonArrayUZBEK, {
@@ -102,6 +102,8 @@ class ChatScreen : AppCompatActivity(), TextToSpeech.OnInitListener {
     private fun clickEvents() {
         btnSend.setOnClickListener {
             sendMessage()
+            btnSend.visibility = View.GONE
+            btnVoice.visibility = View.VISIBLE
         }
         et_message.setOnClickListener {
             GlobalScope.launch {
@@ -109,6 +111,15 @@ class ChatScreen : AppCompatActivity(), TextToSpeech.OnInitListener {
                 withContext(Dispatchers.Main) {
                     recycleView.scrollToPosition(adapter.itemCount - 1)
                 }
+            }
+        }
+        et_message.addTextChangedListener {
+            if (et_message.text.isNotEmpty()){
+                btnVoice.visibility = View.GONE
+                btnSend.visibility = View.VISIBLE
+            } else {
+                btnSend.visibility = View.GONE
+                btnVoice.visibility = View.VISIBLE
             }
         }
     }
